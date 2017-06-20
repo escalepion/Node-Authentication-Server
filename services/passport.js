@@ -6,7 +6,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local');
 
 const localOptions = { usernameField: 'email' };
-const locaalLogin = new LocalStrategy(localOptions, function(email, password, done){
+const localLogin = new LocalStrategy(localOptions, function(email, password, done){
     User.findOne({ email: email }, function(err, user){
         if(err){ return done(err); }
         if(!user) { return done(null, false);}
@@ -38,5 +38,5 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done){
 });
 
 passport.use(jwtLogin);
-passport.use(locaalLogin);
+passport.use(localLogin);
 
